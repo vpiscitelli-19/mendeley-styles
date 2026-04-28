@@ -31,7 +31,7 @@
   </macro>
 
   <citation collapse="citation-number">
-    <layout vertical-align="sup" delimiter=",">
+    <layout delimiter="," vertical-align="sup">
       <text variable="citation-number"/>
     </layout>
   </citation>
@@ -81,5 +81,8 @@
 
       </choose>
     </layout>
+  </bibliography>
+</style>
+
   </bibliography>
 </style>
