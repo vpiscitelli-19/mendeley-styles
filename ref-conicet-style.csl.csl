@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl"
+       version="1.0"
+       class="in-text"
+       default-locale="en-US">
+
+  <info>
+    <title>ref-conicet</title>
+    <id>http://www.zotero.org/styles/ref-conicet</id>
+    <link href="http://www.zotero.org/styles/ref-conicet" rel="self"/>
+    <author>
+      <name>Custom Style</name>
+    </author>
+    <category citation-format="numeric"/>
+    <category field="chemistry"/>
+    <summary>
+      Compact chemistry reference style with all authors displayed and raw URLs for webpages.
+    </summary>
+    <updated>2026-04-28T00:00:00+00:00</updated>
+  </info>
+
+  <!-- AUTHORS -->
+  <macro name="author-full">
+    <names variable="author" delimiter=", ">
+      <name initialize-with=". " delimiter=", "/>
+    </names>
+  </macro>
+
+  <!-- YEAR -->
+  <macro name="year">
+    <date variable="issued">
+      <date-part name="year"/>
+    </date>
+  </macro>
+
+  <!-- SHORT JOURNAL -->
+  <macro name="journal-short">
+    <text variable="container-title" form="short" font-style="italic"/>
+  </macro>
+
+  <!-- CITATIONS -->
+  <citation collapse="citation-number">
+    <layout prefix="[" suffix="]" delimiter=", ">
+      <text variable="citation-number"/>
+    </layout>
+  </citation>
+
+  <!-- BIBLIOGRAPHY -->
+  <bibliography et-al-min="999" et-al-use-first="999">
+    <layout suffix=".">
+
+      <choose>
+
+        <!-- WEBPAGE -->
+        <if type="webpage post-weblog" match="any">
+          <text variable="URL"/>
+        </if>
+
+        <!-- JOURNAL ARTICLE -->
+        <else-if type="article-journal">
+          <group delimiter=" ">
+            <text macro="author-full" suffix="."/>
+            <text macro="journal-short" suffix="."/>
+
+            <group delimiter=", ">
+              <text variable="volume"/>
+              <text variable="page"/>
+            </group>
+
+            <group prefix="(" suffix=")">
+              <text macro="year"/>
+            </group>
+          </group>
+        </else-if>
+
+        <!-- BOOK -->
+        <else-if type="book">
+          <group delimiter=" ">
+            <text macro="author-full" suffix="."/>
+            <text variable="title" font-style="italic" suffix="."/>
+
+            <group prefix="(" suffix=")">
+              <text macro="year"/>
+            </group>
+          </group>
+        </else-if>
+
+        <!-- FALLBACK -->
+        <else>
+          <group delimiter=" ">
+            <text macro="author-full" suffix="."/>
+            <text variable="title" suffix="."/>
+
+            <group prefix="(" suffix=")">
+              <text macro="year"/>
+            </group>
+          </group>
+        </else>
+
+      </choose>
+
+    </layout>
+  </bibliography>
+
+</style>
